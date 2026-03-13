@@ -64,7 +64,7 @@ if "df" not in st.session_state:
 
 
 # Show a section to add a new ticket.
-st.header("Add a ticket")
+st.header("Deschide PV")
 
 # We're adding tickets via an `st.form` and some input widgets. If widgets are used
 # in a form, the app will only rerun once the submit button is pressed.
@@ -81,27 +81,27 @@ if submitted:
     df_new = pd.DataFrame(
         [
             {
-                "ID": f"TICKET-{recent_ticket_number+1}",
-                "Issue": issue,
+                "ID": f"PV-{recent_ticket_number+1}",
+                "Descriere": issue,
                 "Status": "Open",
-                "Priority": priority,
-                "Date Submitted": today,
+                "Prioritate": priority,
+                "Data trimitere service": today,
             }
         ]
     )
 
     # Show a little success message.
-    st.write("Ticket submitted! Here are the ticket details:")
+    st.write("Procesul verbal a fost generat, acestea sunt detaliile:")
     st.dataframe(df_new, use_container_width=True, hide_index=True)
     st.session_state.df = pd.concat([df_new, st.session_state.df], axis=0)
 
 # Show section to view and edit existing tickets in a table.
-st.header("Existing tickets")
-st.write(f"Number of tickets: `{len(st.session_state.df)}`")
+st.header("Procese verbale existente")
+st.write(f"Total PV: `{len(st.session_state.df)}`")
 
 st.info(
-    "You can edit the tickets by double clicking on a cell. Note how the plots below "
-    "update automatically! You can also sort the table by clicking on the column headers.",
+    "Se pot edita PV-urile prin dublu click pe linie"
+    "Se pot sorta coloanele si exporta fisierul ca csv",
     icon="✍️",
 )
 
@@ -118,15 +118,15 @@ edited_df = st.data_editor(
             options=["Open", "In Progress", "Closed"],
             required=True,
         ),
-        "Priority": st.column_config.SelectboxColumn(
-            "Priority",
-            help="Priority",
+        "Prioritate": st.column_config.SelectboxColumn(
+            "Prioritate",
+            help="Prioritate",
             options=["High", "Medium", "Low"],
             required=True,
         ),
     },
     # Disable editing the ID and Date Submitted columns.
-    disabled=["ID", "Date Submitted"],
+    disabled=["ID", "Data trimitere service"],
 )
 
 # Show some metrics and charts about the ticket.
