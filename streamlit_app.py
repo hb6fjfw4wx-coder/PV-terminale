@@ -69,9 +69,9 @@ st.header("Deschide PV")
 # We're adding tickets via an `st.form` and some input widgets. If widgets are used
 # in a form, the app will only rerun once the submit button is pressed.
 with st.form("add_ticket_form"):
-    issue = st.text_area("Describe the issue")
-    priority = st.selectbox("Priority", ["High", "Medium", "Low"])
-    submitted = st.form_submit_button("Submit")
+    issue = st.text_area("Descriere problema")
+    priority = st.selectbox("Prioritate", ["High", "Medium", "Low"])
+    submitted = st.form_submit_button("Trimite")
 
 if submitted:
     # Make a dataframe for the new ticket and append it to the dataframe in session
