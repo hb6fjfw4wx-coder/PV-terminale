@@ -112,3 +112,20 @@ def generate():
 
 if __name__ == "__main__":
     app.run(debug=True)
+import streamlit as st
+
+# All your logic that was inside Flask routes can be turned into
+# normal Python functions and called directly from Streamlit.
+
+def main():
+    st.title("My App")
+
+    # Example: instead of a Flask route that returns text,
+    # just write it in Streamlit:
+    st.write("Hello from Streamlit")
+
+    # Put the rest of your UI here:
+    # st.text_input(...), st.button(...), etc.
+
+if __name__ == "__main__":
+    main()
